@@ -173,7 +173,7 @@ class Board extends React.Component {
           
           if(colors.length >= numberOfPlayers) continue;
 
-          const shapeType: number = i/colors.length;
+          const shapeType: number = Math.floor(i/colors.length);
           let rpoints: number[] = [];
           points = "";
           let scalar: number = 1;
@@ -288,13 +288,13 @@ class Board extends React.Component {
               points += (insidex+rpoints[j]*sidelength/scalar).toString().replace(",", ".") + "," + (insidey+rpoints[j+1]*sidelength/scalar).toString().replace(",", ".");
           }
           
-          if(numberOfPlayers <= colors.length * shapeCount || i/(colors.length*shapeCount) == i % colors.length){
+          if(numberOfPlayers <= colors.length * shapeCount || Math.floor(i/(colors.length*shapeCount)) == i % colors.length){
               ret.push(
                 <polygon points={points} style={{fill: "black"}}/>
               );
           }else{
               ret.push(
-                <polygon points={points} style={{fill: colors[i/(colors.length*shapeCount)]}}/>
+                <polygon points={points} style={{fill: colors[Math.floor(i/(colors.length*shapeCount))]}}/>
               );
           } 
         }
