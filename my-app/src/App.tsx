@@ -31,18 +31,27 @@ function App() {
 
       <h1>Ludo Generator</h1>
 
-      <p>Put in a number of players, and a board will be generated</p>
-
-      <input type="number" value={numberOfPlayers} onChange={numberOfPlayersChangeHandler} /><br />
-      <br />
-      <br />
-
       <Builder></Builder>
     </div>
   );
 }
 
 function Builder() {
+  return (
+    <div className="Builder">
+
+    <p>Put in a number of players, and a board will be generated</p>
+    
+    <input type="number" value={numberOfPlayers} onChange={numberOfPlayersChangeHandler} /><br />
+    <br />
+    <br />
+
+    <Board></Board>
+    </div>
+  );
+}
+
+function Board() {
   if (numberOfPlayers <= 2) {
     return (
       <p><em>Insert a number larger than 2...</em></p>
@@ -53,7 +62,6 @@ function Builder() {
       </svg>
     );
   }
-
 }
 
 export default App;
