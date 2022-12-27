@@ -1,6 +1,9 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import globeImg from "images/Simple_Globe.svg";
+import starImg from "images/star_pictogram.png";
+
 
 let numberOfPlayers: number; //bound
 
@@ -146,11 +149,11 @@ class Board extends React.Component {
                       
                       if((k == 2 && j == 4) || (k == 0 && j == 3)){ /* Globe */
                           ret.push(
-                            <image href="images/Simple_Globe.svg" x={insideX} y={insideY} width={iconSize} height={iconSize}></image>
+                            <image href={globeImg} x={insideX} y={insideY} width={iconSize} height={iconSize}></image>
                           );
                       }else if((k == 0 && j == 0) || (k == 1 && j == 5)){ /* star */
                           ret.push(
-                            <image href="images/star_pictogram.png" x={insideX} y={insideY} width={iconSize} height={iconSize}></image>
+                            <image href={starImg} x={insideX} y={insideY} width={iconSize} height={iconSize}></image>
                           );
                       }
                   }else if(k % 2 == 0 && j % 2 == 0){
