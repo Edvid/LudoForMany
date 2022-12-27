@@ -1,8 +1,8 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import globeImg from "images/Simple_Globe.svg";
-import starImg from "images/star_pictogram.png";
+import globeImg from "./images/Simple_Globe.png";
+import starImg from "./images/star_pictogram.png";
 
 
 let numberOfPlayers: number; //bound
