@@ -164,12 +164,139 @@ class Board extends React.Component {
                       ret.push(
                         <circle cx={insideX.toString().replace(",", ".")} cy={insideY.toString().replace(",", ".")} r={radius.toString().replace(",", ".")} style={{fill: colors[i % colors.length], stroke: "black", strokeWidth: 1}}/>
                       );
-
                   }
-
-                  
               }
           }
+
+          const insidex: number = (x2+1.5*cellX-1*cellY);
+          const insidey: number = (y2+1.5*cellY-1*-cellX);
+          
+          if(colors.length >= numberOfPlayers) continue;
+
+          const shapeType: number = i/colors.length;
+          let rpoints: number[] = [];
+          points = "";
+          let scalar: number = 1;
+
+          switch (shapeType % shapeCount)
+          {
+              case 1:                        
+                  rpoints = [
+                      Math.sin(0.5*2*Math.PI/4), -Math.cos(0.5*2*Math.PI/4), 
+                      Math.sin(1.5*2*Math.PI/4), -Math.cos(1.5*2*Math.PI/4), 
+                      Math.sin(2.5*2*Math.PI/4), -Math.cos(2.5*2*Math.PI/4),
+                      Math.sin(3.5*2*Math.PI/4), -Math.cos(3.5*2*Math.PI/4)
+                  ];
+                  scalar = 5;
+
+                  break;
+              case 2:                
+                  rpoints = [
+                      Math.cos(0*2*Math.PI/6), -Math.sin(0*2*Math.PI/6),
+                      Math.cos(1*2*Math.PI/6), -Math.sin(1*2*Math.PI/6),
+                      Math.cos(2*2*Math.PI/6), -Math.sin(2*2*Math.PI/6),
+                      Math.cos(3*2*Math.PI/6), -Math.sin(3*2*Math.PI/6),
+                      Math.cos(4*2*Math.PI/6), -Math.sin(4*2*Math.PI/6),
+                      Math.cos(5*2*Math.PI/6), -Math.sin(5*2*Math.PI/6)
+                  ];
+                  scalar = 5;
+                  break;
+              case 3:
+                  rpoints = [
+                      Math.sin(0*2*Math.PI/5), -Math.cos(0*2*Math.PI/5),
+                      Math.sin(0.5*2*Math.PI/5)/1.5, -Math.cos(0.5*2*Math.PI/5)/1.5,
+                      Math.sin(1*2*Math.PI/5), -Math.cos(1*2*Math.PI/5),
+                      Math.sin(1.5*2*Math.PI/5)/1.5, -Math.cos(1.5*2*Math.PI/5)/1.5,
+                      Math.sin(2*2*Math.PI/5), -Math.cos(2*2*Math.PI/5),
+                      Math.sin(2.5*2*Math.PI/5)/1.5, -Math.cos(2.5*2*Math.PI/5)/1.5,
+                      Math.sin(3*2*Math.PI/5), -Math.cos(3*2*Math.PI/5),
+                      Math.sin(3.5*2*Math.PI/5)/1.5, -Math.cos(3.5*2*Math.PI/5)/1.5,
+                      Math.sin(4*2*Math.PI/5), -Math.cos(4*2*Math.PI/5),
+                      Math.sin(4.5*2*Math.PI/5)/1.5, -Math.cos(4.5*2*Math.PI/5)/1.5
+                  ];
+                  scalar = 5;
+                  break;
+              case 4:
+                  rpoints = [-1, 3, 1, 3, 1, 1, 3, 1, 3, -1, 1, -1, 1, -3, -1, -3, -1, -1, -3, -1, -3, 1, -1, 1];
+                  scalar = 15;
+                  break;
+              case 5:
+                  rpoints = [-1.5, -1.5, 1.5, -1.5, 1.5, -0.5, 0.5, -0.5, 0.5, 1.5, -0.5, 1.5, -0.5, -0.5, -1.5, -0.5];
+                  scalar = 10;
+                  break;
+              case 6:
+                  rpoints = [-0.75, -1.5, 0.75, -1.5, 1.5, -1, 0, 1.25, -1.5, -1];
+                  scalar = 10;
+                  break;
+              case 7:
+                  const sqrt2: number = Math.sqrt(2);
+                  rpoints = [
+                      -sqrt2/1.5, -sqrt2,
+                      sqrt2/1.5, -sqrt2,
+                      sqrt2/8, 0,
+                      sqrt2/1.5, sqrt2, 
+                      -sqrt2/1.5, sqrt2,
+                      -sqrt2/8, 0
+                  ];
+                  scalar = 10;
+                  break;
+              case 8:
+                  rpoints = [0, -1, 1, -2, 2, -1, 0, 1.5, -2, -1, -1, -2];
+                  scalar = 10;
+                  break;
+              case 9:
+                  rpoints = [0, -4, 1.5, -2.5, 0.5, -2.5, 2.25, -0.5, 1, -0.5, 3, 2, 1, 2, 1, 5, -1, 5, -1, 2, -3, 2, -1, -0.5, -2.25, -0.5, -0.5, -2.5, -1.5, -2.5];
+                  scalar = 20;
+                  break;
+              case 10:
+                  rpoints = [0, -3, -0.25, -0.5, 2, -0.5, 0, 3, 0.25, 0.5, -2, 0.5];
+                  scalar = 15;
+                  break;
+              case 11:
+                  rpoints = [0, -1, 1, 0, 3, -2, 2, 2, -2, 2, -3, -2, -1, 0];
+                  scalar = 15;
+                  break;
+              case 12:
+                  rpoints = [0, -2, 2, -1, 0, 2, -2, -1];
+                  scalar = 15;
+                  break;
+              case 13:
+                  rpoints = [1, 0, 2, -2, 2, 2, -2, 2, -2, -2, -1, 0];
+                  scalar = 15;
+                  break;
+              case 14:
+                  rpoints = [0, -1, 2, -2, 2, 1, 0, 2, -2, 1, -2, -2];
+                  scalar = 15;
+                  break;
+              case 15:
+                  
+                  rpoints = [-1, -3, 2, -0.5, 4, -3, 3, 0, 4, 3, 2, 0.5, -1, 3, -4, 0];
+                  scalar = 25;
+                  break;
+              default: 
+                  rpoints = [
+                      Math.sin(0*2*Math.PI/3), -Math.cos(0*2*Math.PI/3), 
+                      Math.sin(1*2*Math.PI/3), -Math.cos(1*2*Math.PI/3), 
+                      Math.sin(2*2*Math.PI/3), -Math.cos(2*2*Math.PI/3)
+                      ];
+                  scalar = 5; 
+              break;
+          }
+          
+          for(let j = 0; j < rpoints.length; j+=2){
+              if(j != 0) points += " ";
+              points += (insidex+rpoints[j]*sidelength/scalar).toString().replace(",", ".") + "," + (insidey+rpoints[j+1]*sidelength/scalar).toString().replace(",", ".");
+          }
+          
+          if(numberOfPlayers <= colors.length * shapeCount || i/(colors.length*shapeCount) == i % colors.length){
+              ret.push(
+                <polygon points={points} style={{fill: "black"}}/>
+              );
+          }else{
+              ret.push(
+                <polygon points={points} style={{fill: colors[i/(colors.length*shapeCount)]}}/>
+              );
+          } 
         }
 
         return (
