@@ -36,31 +36,43 @@ function App() {
   );
 }
 
-function Builder() {
-  return (
-    <div className="Builder">
+class Builder extends React.Component {
+  constructor(props: any){
+    super(props);
+  }
 
-    <p>Put in a number of players, and a board will be generated</p>
-    
-    <input type="number" value={numberOfPlayers} onChange={numberOfPlayersChangeHandler} /><br />
-    <br />
-    <br />
+  render(): React.ReactNode {    
+    return (
+      <div className="Builder">
 
-    <Board></Board>
-    </div>
-  );
+      <p>Put in a number of players, and a board will be generated</p>
+      
+      <input type="number" value={numberOfPlayers} onChange={numberOfPlayersChangeHandler} /><br />
+      <br />
+      <br />
+
+      <Board></Board>
+      </div>
+    );
+  }
 }
 
-function Board() {
-  if (numberOfPlayers <= 2) {
-    return (
-      <p><em>Insert a number larger than 2...</em></p>
-    );
-  } else {
-    return (
-      <svg width={imageSize} height={imageSize} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-      </svg>
-    );
+class Board extends React.Component {
+  constructor (props: any) {
+    super(props);
+  }
+  render(): React.ReactNode {
+      
+    if (numberOfPlayers <= 2) {
+      return (
+        <p><em>Insert a number larger than 2...</em></p>
+        );
+      } else {
+        return (
+          <svg width={imageSize} height={imageSize} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
+          </svg>
+        );
+      }
   }
 }
 
