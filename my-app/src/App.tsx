@@ -4,10 +4,6 @@ import './App.css';
 
 let numberOfPlayers: number; //bound
 
-function numberOfPlayersChangeHandler(event: any) {
-  numberOfPlayers = event.target.value as number;
-}
-
 let sidelength: number = 0;
 let imageSize: number = 4000;
 let circleSize: number = 1;
@@ -39,6 +35,17 @@ function App() {
 class Builder extends React.Component {
   constructor(props: any){
     super(props);
+    this.state = {numberOfPlayers: 4};
+
+    //This binding is necessary to make `this` work in the callback
+    this.numberOfPlayersChangeHandler = this.numberOfPlayersChangeHandler.bind(this);
+  }
+
+  numberOfPlayersChangeHandler(event: any) {
+    numberOfPlayers = event.target.value as number;
+    this.setState(() => ({
+      numberOfPlayers: event.target.value
+    }));
   }
 
   render(): React.ReactNode {    
@@ -47,7 +54,7 @@ class Builder extends React.Component {
 
       <p>Put in a number of players, and a board will be generated</p>
       
-      <input type="number" value={numberOfPlayers} onChange={numberOfPlayersChangeHandler} /><br />
+      <input type="number" value={numberOfPlayers} onChange={this.numberOfPlayersChangeHandler} /><br />
       <br />
       <br />
 
@@ -70,7 +77,7 @@ class Board extends React.Component {
       } else {
         return (
           <svg width={imageSize} height={imageSize} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-          </svg>
+        </svg>
         );
       }
   }
