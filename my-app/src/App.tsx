@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import globeImg from "./images/Simple_Globe.png";
 import starImg from "./images/star_pictogram.png";
@@ -56,7 +55,7 @@ class Builder extends React.Component {
       <div className="Builder">
 
       <p>Put in a number of players, and a board will be generated</p>
-      
+
       <input type="number" value={numberOfPlayers} onChange={this.numberOfPlayersChangeHandler} /><br />
       <br />
       <br />
@@ -287,7 +286,7 @@ class Board extends React.Component {
               if(j != 0) points += " ";
               points += (insidex+rpoints[j]*sidelength/scalar).toString().replace(",", ".") + "," + (insidey+rpoints[j+1]*sidelength/scalar).toString().replace(",", ".");
           }
-          
+
           if(numberOfPlayers <= colors.length * shapeCount || Math.floor(i/(colors.length*shapeCount)) == i % colors.length){
               ret.push(
                 <polygon points={points} style={{fill: "black"}}/>
@@ -300,9 +299,11 @@ class Board extends React.Component {
         }
 
         return (
-          <svg width={imageSize} height={imageSize} xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink">
-            {ret}
-          </svg>
+            <div>
+          	<svg width={imageSize} height={imageSize} viewBox="0 0 4000 4000" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" style={{width: "40rem", height: "40rem"}}>
+          	  {ret}
+          	</svg>
+            </div>
         );
       }
   }
